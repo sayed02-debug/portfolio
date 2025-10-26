@@ -3,60 +3,171 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Md. Abu Sayed Islam | Flutter Developer</title>
+  <title>Md. Abu Sayed Islam | Mobile & Backend Developer</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    body { font-family: 'Poppins', sans-serif; background: #f9f9f9; color: #333; margin: 0; padding: 0; }
-    header { background: #007bff; color: white; text-align: center; padding: 40px 10px; }
-    header h1 { margin: 0; font-size: 2rem; }
-    section { padding: 20px; max-width: 900px; margin: auto; }
-    h2 { color: #007bff; border-bottom: 2px solid #007bff; display: inline-block; margin-bottom: 10px; }
-    .project { background: white; padding: 15px; margin: 10px 0; border-radius: 10px; box-shadow: 0 2px 6px rgba(0,0,0,0.1); }
-    .project a { color: #007bff; text-decoration: none; }
-    footer { text-align: center; padding: 20px; background: #007bff; color: white; margin-top: 30px; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Poppins', sans-serif; background: #f4f7f9; color: #333; line-height: 1.6; scroll-behavior: smooth;}
+    
+    header { background: linear-gradient(90deg,#007bff,#00aaff); color: white; text-align: center; padding: 60px 20px; }
+    header h1 { font-size: 2.5rem; margin-bottom: 10px; }
+    header p { font-size: 1.1rem; margin: 5px 0; }
+
+    section { padding: 40px 20px; max-width: 1000px; margin: auto; opacity: 0; transform: translateY(30px); transition: all 0.7s ease-in-out; }
+    section.visible { opacity: 1; transform: translateY(0); }
+
+    h2 { color: #007bff; border-bottom: 3px solid #007bff; display: inline-block; margin-bottom: 20px; font-size: 1.8rem; }
+
+    .about p { font-size: 1rem; margin-top: 10px; }
+
+    .skills, .projects, .education, .contact { display: grid; gap: 20px; }
+
+    .skill-card, .project-card, .education-card, .contact-card {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-card:hover, .project-card:hover, .education-card:hover, .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .skills h3, .projects h3, .education h3 { margin-bottom: 10px; color: #007bff; }
+    .skills p, .projects p, .education p, .contact p { font-size: 0.95rem; }
+
+    .skill-bar {
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      margin-top: 8px;
+    }
+    .skill-bar span {
+      display: block;
+      height: 100%;
+      background: #007bff;
+      width: 0;
+      border-radius: 5px;
+      transition: width 1s ease-in-out;
+    }
+
+    a { color: #007bff; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    footer { text-align: center; padding: 25px 20px; background: #007bff; color: white; margin-top: 50px; font-size: 0.9rem; }
+
+    @media (max-width: 768px) {
+      .skills, .projects, .education, .contact { display: block; }
+    }
   </style>
 </head>
 <body>
+
   <header>
     <h1>Md. Abu Sayed Islam</h1>
-    <p>Flutter Developer | Dart | Firebase | REST API</p>
+    <p>Mobile & Backend Developer | Flutter | Dart | Firebase | Golang | REST API</p>
     <p>📧 mdabusayedislam2@gmail.com | 📱 +8801521703362</p>
   </header>
 
-  <section>
+  <section class="about">
     <h2>About Me</h2>
     <p>
-      I'm a passionate Flutter developer from Dhaka, Bangladesh. I enjoy building
-      modern, cross-platform mobile apps using Flutter and Dart. My focus is on
-      clean UI, optimized performance, and meaningful user experiences.
+      I am a passionate Mobile and Backend Developer from Dhaka, Bangladesh. I enjoy building
+      cross-platform mobile apps using Flutter and Dart while integrating scalable backend systems
+      using Golang. My focus is on clean UI, optimized performance, and delivering meaningful user experiences.
     </p>
   </section>
 
-  <section>
-    <h2>Projects</h2>
-
-    <div class="project">
-      <h3>Smart Mess Management System</h3>
-      <p>A Flutter app for managing meals, expenses, and members in a mess or hostel.</p>
-      <p><strong>Tech:</strong> Flutter, Firebase, REST API</p>
-      <a href="https://github.com/sayed02-debug/mess_management_app" target="_blank">View on GitHub</a>
+  <section class="skills">
+    <h2>Skills</h2>
+    <div class="skill-card">
+      <h3>Flutter & Dart</h3>
+      <div class="skill-bar"><span data-width="95%"></span></div>
     </div>
-
-    <div class="project">
-      <h3>IoT-based Child Safety App</h3>
-      <p>An IoT-integrated mobile app for child safety and real-time alert system.</p>
-      <a href="https://github.com/sayed02-debug/hackpreli" target="_blank">View on GitHub</a>
+    <div class="skill-card">
+      <h3>Firebase & REST API</h3>
+      <div class="skill-bar"><span data-width="90%"></span></div>
+    </div>
+    <div class="skill-card">
+      <h3>Backend Development (Golang/Node.js)</h3>
+      <div class="skill-bar"><span data-width="75%"></span></div>
+    </div>
+    <div class="skill-card">
+      <h3>Database & Tools</h3>
+      <div class="skill-bar"><span data-width="85%"></span></div>
     </div>
   </section>
 
-  <section>
+  <section class="projects">
+    <h2>Projects</h2>
+    <div class="project-card">
+      <h3>Smart Mess Management System</h3>
+      <p>A Flutter app for managing meals, expenses, and members in a hostel or mess.</p>
+      <p><strong>Tech:</strong> Flutter, Firebase, REST API</p>
+      <a href="https://github.com/sayed02-debug/mess_management_app" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <h3>IoT-based Child Safety App</h3>
+      <p>An IoT-integrated mobile app for child safety with real-time alert system.</p>
+      <p><strong>Tech:</strong> Flutter, Firebase, IoT integration</p>
+      <a href="https://github.com/sayed02-debug/hackpreli" target="_blank">View on GitHub</a>
+    </div>
+    <div class="project-card">
+      <h3>Online Bookstore</h3>
+      <p>Users can browse, order, and buy books online with payment integration.</p>
+      <p><strong>Tech:</strong> Flutter, Firebase</p>
+    </div>
+  </section>
+
+  <section class="education">
+    <h2>Education</h2>
+    <div class="education-card">
+      <h3>B.Sc. in Computer Science & Engineering</h3>
+      <p>Jagannath University, Dhaka (Expected Year)</p>
+    </div>
+  </section>
+
+  <section class="contact">
     <h2>Contact</h2>
-    <p>📩 Email: <a href="mailto:mdabusayedislam2@gmail.com">mdabusayedislam2@gmail.com</a></p>
-    <p>💼 LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">linkedin.com/in/sayed02</a></p>
-    <p>🐙 GitHub: <a href="https://github.com/sayed02-debug" target="_blank">github.com/sayed02-debug</a></p>
+    <div class="contact-card">
+      <p>📩 Email: <a href="mailto:mdabusayedislam2@gmail.com">mdabusayedislam2@gmail.com</a></p>
+      <p>💼 LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">linkedin.com/in/sayed02</a></p>
+      <p>🐙 GitHub: <a href="https://github.com/sayed02-debug" target="_blank">github.com/sayed02-debug</a></p>
+      <p>📱 Phone: +8801521703362</p>
+    </div>
   </section>
 
   <footer>
     <p>© 2025 Md. Abu Sayed Islam. All Rights Reserved.</p>
   </footer>
+
+  <script>
+    // Scroll animation
+    const sections = document.querySelectorAll('section');
+    const options = { threshold: 0.2 };
+    const observer = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, options);
+    sections.forEach(section => observer.observe(section));
+
+    // Skill bars animation
+    const skillBars = document.querySelectorAll('.skill-bar span');
+    window.addEventListener('scroll', () => {
+      skillBars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50) {
+          bar.style.width = bar.dataset.width;
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
