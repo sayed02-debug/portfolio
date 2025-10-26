@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Md. Abu Sayed Islam | Mobile & Backend Developer</title>
+  <title>MD. ABU SAYED ISLAM | Software Engineer & AI Enthusiast</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,163 +11,192 @@
     
     header { background: linear-gradient(90deg,#007bff,#00aaff); color: white; text-align: center; padding: 60px 20px; }
     header h1 { font-size: 2.5rem; margin-bottom: 10px; }
-    header p { font-size: 1.1rem; margin: 5px 0; }
+    header h2 { font-size: 1.2rem; font-weight: 400; margin-bottom: 10px; }
+    header p { font-size: 0.95rem; margin: 3px 0; }
 
     section { padding: 40px 20px; max-width: 1000px; margin: auto; opacity: 0; transform: translateY(30px); transition: all 0.7s ease-in-out; }
     section.visible { opacity: 1; transform: translateY(0); }
 
     h2 { color: #007bff; border-bottom: 3px solid #007bff; display: inline-block; margin-bottom: 20px; font-size: 1.8rem; }
 
-    .about p { font-size: 1rem; margin-top: 10px; }
+    .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 20px; transition: transform 0.3s, box-shadow 0.3s; }
+    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
 
-    .skills, .projects, .education, .contact { display: grid; gap: 20px; }
+    .card h3 { color: #007bff; margin-bottom: 10px; }
+    ul { margin-left: 20px; }
+    li { margin-bottom: 8px; }
 
-    .skill-card, .project-card, .education-card, .contact-card {
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-      transition: transform 0.3s, box-shadow 0.3s;
-    }
-    .skill-card:hover, .project-card:hover, .education-card:hover, .contact-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    }
+    .skill-bar { height: 8px; background: #e0e0e0; border-radius: 5px; overflow: hidden; margin-top: 8px; }
+    .skill-bar span { display: block; height: 100%; background: #007bff; width: 0; border-radius: 5px; transition: width 1s ease-in-out; }
 
-    .skills h3, .projects h3, .education h3 { margin-bottom: 10px; color: #007bff; }
-    .skills p, .projects p, .education p, .contact p { font-size: 0.95rem; }
-
-    .skill-bar {
-      height: 8px;
-      background: #e0e0e0;
-      border-radius: 5px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-    .skill-bar span {
-      display: block;
-      height: 100%;
-      background: #007bff;
-      width: 0;
-      border-radius: 5px;
-      transition: width 1s ease-in-out;
-    }
-
-    a { color: #007bff; text-decoration: none; }
+    a { color: #007bff; text-decoration: none; margin-right: 10px; }
     a:hover { text-decoration: underline; }
+
+    .btn { display: inline-block; padding: 8px 15px; margin-top: 10px; background: #007bff; color: white; border-radius: 5px; text-decoration: none; transition: background 0.3s; }
+    .btn:hover { background: #005bb5; }
+
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #007bff;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 18px;
+      display: none;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+    #backToTop:hover { background: #005bb5; }
 
     footer { text-align: center; padding: 25px 20px; background: #007bff; color: white; margin-top: 50px; font-size: 0.9rem; }
 
-    @media (max-width: 768px) {
-      .skills, .projects, .education, .contact { display: block; }
-    }
+    @media (max-width: 768px) { section { padding: 30px 15px; } }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Md. Abu Sayed Islam</h1>
-    <p>Mobile & Backend Developer | Flutter | Dart | Firebase | Golang | REST API</p>
-    <p>📧 mdabusayedislam2@gmail.com | 📱 +8801521703362</p>
-  </header>
+<header>
+  <h1>MD. ABU SAYED ISLAM</h1>
+  <h2>Software Engineer & AI Enthusiast</h2>
+  <p>📧 mdabusayedislam2@gmail.com | 📱 +880-1521-703362</p>
+  <p>LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">sayed02</a> | GitHub: <a href="https://github.com/sayed02-debug" target="_blank">sayed02-debug</a></p>
+  <a class="btn" href="MD_AbuSayedIslam_CV.pdf" download>Download CV (PDF)</a>
+</header>
 
-  <section class="about">
-    <h2>About Me</h2>
-    <p>
-      I am a passionate Mobile and Backend Developer from Dhaka, Bangladesh. I enjoy building
-      cross-platform mobile apps using Flutter and Dart while integrating scalable backend systems
-      using Golang. My focus is on clean UI, optimized performance, and delivering meaningful user experiences.
-    </p>
-  </section>
+<section class="about">
+  <h2>About Me</h2>
+  <p>
+    I am a motivated and detail-oriented Software Engineer with expertise in Flutter, Dart, Golang, and Python. 
+    I hold a B.Sc. in Computer Science & Engineering from Jagannath University. 
+    I enjoy designing and building scalable, high-performance applications and backend systems with clean architecture. 
+    My focus is on creating meaningful user experiences and continuously learning modern technologies to deliver innovative solutions.
+  </p>
+</section>
 
-  <section class="skills">
-    <h2>Skills</h2>
-    <div class="skill-card">
-      <h3>Flutter & Dart</h3>
-      <div class="skill-bar"><span data-width="95%"></span></div>
-    </div>
-    <div class="skill-card">
-      <h3>Firebase & REST API</h3>
-      <div class="skill-bar"><span data-width="90%"></span></div>
-    </div>
-    <div class="skill-card">
-      <h3>Backend Development (Golang/Node.js)</h3>
-      <div class="skill-bar"><span data-width="75%"></span></div>
-    </div>
-    <div class="skill-card">
-      <h3>Database & Tools</h3>
-      <div class="skill-bar"><span data-width="85%"></span></div>
-    </div>
-  </section>
+<section class="skills">
+  <h2>Skills</h2>
+  <div class="card">
+    <h3>Flutter & Dart</h3>
+    <div class="skill-bar"><span data-width="95%"></span></div>
+  </div>
+  <div class="card">
+    <h3>Golang & Python</h3>
+    <div class="skill-bar"><span data-width="85%"></span></div>
+  </div>
+  <div class="card">
+    <h3>Databases & Tools</h3>
+    <div class="skill-bar"><span data-width="90%"></span></div>
+  </div>
+  <div class="card">
+    <h3>Machine Learning & Data Analysis</h3>
+    <div class="skill-bar"><span data-width="80%"></span></div>
+  </div>
+</section>
 
-  <section class="projects">
-    <h2>Projects</h2>
-    <div class="project-card">
-      <h3>Smart Mess Management System</h3>
-      <p>A Flutter app for managing meals, expenses, and members in a hostel or mess.</p>
-      <p><strong>Tech:</strong> Flutter, Firebase, REST API</p>
-      <a href="https://github.com/sayed02-debug/mess_management_app" target="_blank">View on GitHub</a>
-    </div>
-    <div class="project-card">
-      <h3>IoT-based Child Safety App</h3>
-      <p>An IoT-integrated mobile app for child safety with real-time alert system.</p>
-      <p><strong>Tech:</strong> Flutter, Firebase, IoT integration</p>
-      <a href="https://github.com/sayed02-debug/hackpreli" target="_blank">View on GitHub</a>
-    </div>
-    <div class="project-card">
-      <h3>Online Bookstore</h3>
-      <p>Users can browse, order, and buy books online with payment integration.</p>
-      <p><strong>Tech:</strong> Flutter, Firebase</p>
-    </div>
-  </section>
+<section class="experience">
+  <h2>Experience</h2>
+  <div class="card">
+    <h3>Flutter Developer | Freelance & Academic Projects</h3>
+    <ul>
+      <li>Developed <strong>Smart Mess Management System</strong> app (GitHub Repo), streamlining group expense tracking and meal planning for 100+ users.</li>
+      <li>Built <strong>IoT-based Child Safety & Health Monitoring Bracelet</strong> app, integrating real-time wearable data.</li>
+      <li>Created a <strong>Custom Alarm</strong> app with personalized scheduling features.</li>
+    </ul>
+  </div>
+  <div class="card">
+    <h3>Web Developer | Freelance & Academic Projects</h3>
+    <ul>
+      <li>Developed <strong>Voter API</strong> for HackTheAI hackathon (GitHub Repo), Flask-based with Docker deployment.</li>
+      <li>Built web apps using Python and Flask, improving client-side performance.</li>
+      <li>Collaborated with data scientists to integrate ML models into production systems.</li>
+      <li>Conducted data analysis using Pandas & SQL for actionable insights.</li>
+      <li>Wrote clean, maintainable code following best practices.</li>
+    </ul>
+  </div>
+</section>
 
-  <section class="education">
-    <h2>Education</h2>
-    <div class="education-card">
-      <h3>B.Sc. in Computer Science & Engineering</h3>
-      <p>Jagannath University, Dhaka (Expected Year)</p>
-    </div>
-  </section>
+<section class="education">
+  <h2>Education</h2>
+  <div class="card">
+    <h3>B.Sc. in Computer Science & Engineering</h3>
+    <p>Jagannath University</p>
+    <p>Thesis: <em>Machine Learning for Predictive Analytics</em></p>
+  </div>
+  <div class="card">
+    <h3>H.S.C.</h3>
+    <p>Nilphamari Govt. College</p>
+    <p>GPA: 5.0/5.0</p>
+  </div>
+</section>
 
-  <section class="contact">
-    <h2>Contact</h2>
-    <div class="contact-card">
-      <p>📩 Email: <a href="mailto:mdabusayedislam2@gmail.com">mdabusayedislam2@gmail.com</a></p>
-      <p>💼 LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">linkedin.com/in/sayed02</a></p>
-      <p>🐙 GitHub: <a href="https://github.com/sayed02-debug" target="_blank">github.com/sayed02-debug</a></p>
-      <p>📱 Phone: +8801521703362</p>
-    </div>
-  </section>
+<section class="languages">
+  <h2>Languages</h2>
+  <ul>
+    <li>English: ○○○○○</li>
+    <li>Bengali: ○○○○○</li>
+    <li>Hindi: ○○○○○</li>
+  </ul>
+</section>
 
-  <footer>
-    <p>© 2025 Md. Abu Sayed Islam. All Rights Reserved.</p>
-  </footer>
+<section class="philosophy">
+  <h2>Life Philosophy</h2>
+  <p><em>“Life is not about finding yourself, it’s about creating yourself. Build your legacy with every algorithm you design.”</em></p>
+</section>
 
-  <script>
-    // Scroll animation
-    const sections = document.querySelectorAll('section');
-    const options = { threshold: 0.2 };
-    const observer = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, options);
-    sections.forEach(section => observer.observe(section));
+<section class="projects">
+  <h2>Most Proud Of</h2>
+  <div class="card">
+    <h3>IoT Project Success</h3>
+    <p>Led a team to develop an IoT-based Child Safety & Health Monitoring Bracelet, integrating real-time health data.</p>
+    <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">View on GitHub</a>
+  </div>
+  <div class="card">
+    <h3>HackTheAI Hackathon</h3>
+    <p>Secured 73rd place among 250+ teams in HackTheAI 2025, demonstrating expertise in backend API development.</p>
+    <a class="btn" href="https://github.com/sayed02-debug" target="_blank">View on GitHub</a>
+  </div>
+</section>
 
-    // Skill bars animation
-    const skillBars = document.querySelectorAll('.skill-bar span');
-    window.addEventListener('scroll', () => {
-      skillBars.forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 50) {
-          bar.style.width = bar.dataset.width;
-        }
-      });
+<div id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+
+<footer>
+  <p>© 2025 MD. ABU SAYED ISLAM. All Rights Reserved.</p>
+</footer>
+
+<script>
+  // Scroll animation
+  const sections = document.querySelectorAll('section');
+  const observer = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
     });
-  </script>
+  }, { threshold: 0.2 });
+  sections.forEach(section => observer.observe(section));
+
+  // Skill bars animation
+  const skillBars = document.querySelectorAll('.skill-bar span');
+  window.addEventListener('scroll', () => {
+    skillBars.forEach(bar => {
+      const rect = bar.getBoundingClientRect();
+      if(rect.top < window.innerHeight - 50) {
+        bar.style.width = bar.dataset.width;
+      }
+    });
+  });
+
+  // Back to top button
+  const backToTop = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 300){ backToTop.style.display = 'block'; }
+    else { backToTop.style.display = 'none'; }
+  });
+</script>
 
 </body>
 </html>
