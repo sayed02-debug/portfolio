@@ -34,22 +34,6 @@
       box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
     }
 
-    .profile-placeholder {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid #00d4ff;
-      background: #004d99;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin: 0 auto 20px;
-      box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
-    }
-
     header h1 {
       font-size: 2.7rem;
       letter-spacing: 1px;
@@ -94,13 +78,6 @@
     .btn:hover {
       background: #00a3cc;
       transform: translateY(-3px);
-    }
-
-    .btn-disabled {
-      background: #cccccc !important;
-      cursor: not-allowed !important;
-      transform: none !important;
-      opacity: 0.7;
     }
 
     /* SECTIONS */
@@ -199,15 +176,7 @@
 <body>
 
   <header>
-    <!-- Profile Image -->
-    <div id="profileImage">
-      <img src="./assets/profile.png" alt="MD. ABU SAYED ISLAM" 
-           onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';">
-      <div class="profile-placeholder" id="placeholder" style="display:none;">
-        SAYED
-      </div>
-    </div>
-    
+    <img src="assets/profile.png" alt="MD. ABU SAYED ISLAM" onerror="this.src='https://via.placeholder.com/150/007bff/ffffff?text=SAYED'">
     <h1>MD. ABU SAYED ISLAM</h1>
     <h2>Software Engineer & AI Enthusiast</h2>
     <p>📧 mdabusayedislam2@gmail.com | 📱 +880-1521-703362</p>
@@ -215,10 +184,7 @@
       LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">sayed02</a> |
       GitHub: <a href="https://github.com/sayed02-debug" target="_blank">sayed02-debug</a>
     </p>
-    
-    <!-- CV Download -->
-    <a class="btn" href="./assets/Md_Abu_Sayed_Islam.pdf" download="Md_Abu_Sayed_Islam_CV.pdf" id="cvDownload">📄 Download CV</a>
-    <p id="cvStatus" style="margin-top: 10px; font-size: 0.8rem; color: #ccc;"></p>
+    <a class="btn" href="assets/Md_Abu_Sayed_islam.pdf" download="Md_Abu_Sayed_Islam.pdf">📄 Download CV</a>
   </header>
 
   <section class="about">
@@ -284,85 +250,6 @@
   </footer>
 
   <script>
-    // Check if files exist on page load
-    window.addEventListener('load', function() {
-      console.log('Page loaded - checking files...');
-      
-      // Check profile image
-      const profileImg = document.querySelector('header img');
-      if (profileImg) {
-        console.log('Checking profile image:', profileImg.src);
-        profileImg.onerror = function() {
-          console.log('Profile image not found, showing placeholder');
-          this.style.display = 'none';
-          document.getElementById('placeholder').style.display = 'flex';
-        };
-        
-        // Force check image
-        const img = new Image();
-        img.onerror = function() {
-          profileImg.onerror();
-        };
-        img.src = profileImg.src;
-      }
-
-      // Check CV file
-      const cvLink = document.getElementById('cvDownload');
-      const cvStatus = document.getElementById('cvStatus');
-      
-      if (cvLink) {
-        console.log('Checking CV file:', cvLink.href);
-        
-        // Try multiple methods to check file existence
-        checkCVFile(cvLink.href)
-          .then(exists => {
-            if (exists) {
-              console.log('CV file found');
-              cvStatus.textContent = 'CV is available for download';
-              cvStatus.style.color = '#90EE90';
-            } else {
-              console.log('CV file not found');
-              showCVError();
-            }
-          })
-          .catch(error => {
-            console.log('Error checking CV file:', error);
-            showCVError();
-          });
-      }
-
-      function showCVError() {
-        cvLink.classList.add('btn-disabled');
-        cvLink.onclick = function(e) {
-          e.preventDefault();
-          alert('CV file is not available at the moment. Please contact me directly at mdabusayedislam2@gmail.com');
-          return false;
-        };
-        cvStatus.textContent = 'CV temporarily unavailable - Please contact via email';
-        cvStatus.style.color = '#FFB6C1';
-      }
-
-      function checkCVFile(url) {
-        return new Promise((resolve) => {
-          // Method 1: Fetch with HEAD
-          fetch(url, { method: 'HEAD', cache: 'no-cache' })
-            .then(response => {
-              resolve(response.ok);
-            })
-            .catch(() => {
-              // Method 2: Try with GET but only check status
-              fetch(url, { method: 'GET', cache: 'no-cache' })
-                .then(response => {
-                  resolve(response.ok);
-                })
-                .catch(() => {
-                  resolve(false);
-                });
-            });
-        });
-      }
-    });
-
     // Animate sections
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
@@ -386,11 +273,9 @@
 
     // Back to top
     const backToTop = document.getElementById('backToTop');
-    if (backToTop) {
-      window.addEventListener('scroll', () => {
-        backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
-      });
-    }
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
+    });
   </script>
 
 </body>
