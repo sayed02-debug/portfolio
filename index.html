@@ -15,7 +15,6 @@
       scroll-behavior: smooth;
     }
 
-    /* HEADER */
     header {
       background: linear-gradient(135deg, #00264d, #004d99);
       color: white;
@@ -103,7 +102,16 @@
       opacity: 0.7;
     }
 
-    /* SECTIONS */
+    #cvStatus {
+      margin-top: 10px;
+      font-size: 0.8rem;
+      color: #90EE90;
+    }
+
+    .status-error { color: #FFB6C1 !important; }
+    .status-success { color: #90EE90 !important; }
+
+    /* বাকি CSS একই রাখুন */
     section {
       padding: 70px 20px;
       max-width: 1000px;
@@ -144,7 +152,6 @@
 
     ul { margin-left: 20px; line-height: 1.7; }
 
-    /* SKILL BAR */
     .skill { margin-bottom: 15px; }
     .skill p { font-weight: 600; margin-bottom: 5px; color: #333; }
     .skill-bar {
@@ -162,7 +169,6 @@
       transition: width 1s ease-in-out;
     }
 
-    /* BACK TO TOP */
     #backToTop {
       position: fixed;
       bottom: 30px;
@@ -202,7 +208,7 @@
     <!-- Profile Image -->
     <div id="profileImage">
       <img src="./assets/profile.png" alt="MD. ABU SAYED ISLAM" 
-           onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';">
+           onerror="handleImageError(this)">
       <div class="profile-placeholder" id="placeholder" style="display:none;">
         SAYED
       </div>
@@ -218,17 +224,13 @@
     
     <!-- CV Download -->
     <a class="btn" href="./assets/Md_Abu_Sayed_Islam.pdf" download="Md_Abu_Sayed_Islam_CV.pdf" id="cvDownload">📄 Download CV</a>
-    <p id="cvStatus" style="margin-top: 10px; font-size: 0.8rem; color: #ccc;"></p>
+    <p id="cvStatus">Checking CV availability...</p>
   </header>
 
+  <!-- বাকি sections একই -->
   <section class="about">
     <h2>About Me</h2>
-    <p>
-      I'm a passionate Software Engineer and AI Enthusiast with hands-on experience in Flutter, Dart, Golang, and Python.  
-      Currently pursuing a B.Sc. in Computer Science & Engineering at Jagannath University.  
-      I specialize in building modern, scalable mobile and backend solutions with a focus on clean architecture, design consistency, and performance.  
-      My goal is to merge creativity with technology to craft meaningful digital experiences.
-    </p>
+    <p>I'm a passionate Software Engineer and AI Enthusiast...</p>
   </section>
 
   <section class="skills">
@@ -246,12 +248,11 @@
     <div class="card">
       <h3>Flutter Developer | Freelance & Academic Projects</h3>
       <ul>
-        <li>Developed a Smart Mess Management System app for meal and expense tracking (GitHub Repo).</li>
+        <li>Developed a Smart Mess Management System app for meal and expense tracking.</li>
         <li>Built an IoT-based Child Safety & Health Monitoring app integrating real-time wearable data.</li>
         <li>Created a Custom Alarm app with personalized scheduling features.</li>
       </ul>
     </div>
-
     <div class="card">
       <h3>Web Developer | Freelance & Academic Projects</h3>
       <ul>
@@ -269,10 +270,9 @@
       <p>Led a team to develop an IoT-based wearable system integrating real-time data and alerting mechanism.</p>
       <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">🔗 View Project</a>
     </div>
-
     <div class="card">
       <h3>HackTheAI Hackathon</h3>
-      <p>Secured 73rd place among 250+ teams in HackTheAI 2025, demonstrating backend and API development expertise.</p>
+      <p>Secured 73rd place among 250+ teams in HackTheAI 2025.</p>
       <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">🔗 View Hackathon Repo</a>
     </div>
   </section>
@@ -284,114 +284,130 @@
   </footer>
 
   <script>
-    // Check if files exist on page load
-    window.addEventListener('load', function() {
-      console.log('Page loaded - checking files...');
-      
-      // Check profile image
-      const profileImg = document.querySelector('header img');
-      if (profileImg) {
-        console.log('Checking profile image:', profileImg.src);
-        profileImg.onerror = function() {
-          console.log('Profile image not found, showing placeholder');
-          this.style.display = 'none';
-          document.getElementById('placeholder').style.display = 'flex';
-        };
-        
-        // Force check image
-        const img = new Image();
-        img.onerror = function() {
-          profileImg.onerror();
-        };
-        img.src = profileImg.src;
-      }
+    function handleImageError(img) {
+      console.log('Profile image not found:', img.src);
+      img.style.display = 'none';
+      document.getElementById('placeholder').style.display = 'flex';
+    }
 
-      // Check CV file
+    // Check CV file availability
+    async function checkCVFile() {
       const cvLink = document.getElementById('cvDownload');
       const cvStatus = document.getElementById('cvStatus');
-      
-      if (cvLink) {
-        console.log('Checking CV file:', cvLink.href);
-        
-        // Try multiple methods to check file existence
-        checkCVFile(cvLink.href)
-          .then(exists => {
-            if (exists) {
-              console.log('CV file found');
-              cvStatus.textContent = 'CV is available for download';
-              cvStatus.style.color = '#90EE90';
-            } else {
-              console.log('CV file not found');
-              showCVError();
-            }
-          })
-          .catch(error => {
-            console.log('Error checking CV file:', error);
-            showCVError();
-          });
-      }
+      const cvUrl = cvLink.href;
 
-      function showCVError() {
+      console.log('Checking CV file:', cvUrl);
+
+      try {
+        // Try multiple methods to check file
+        const response = await fetch(cvUrl, { 
+          method: 'HEAD',
+          cache: 'no-cache'
+        });
+
+        if (response.ok) {
+          console.log('✅ CV file found and accessible');
+          cvStatus.textContent = '✅ CV is available for download';
+          cvStatus.className = 'status-success';
+          cvLink.classList.remove('btn-disabled');
+          
+          // Set up successful download
+          cvLink.onclick = function(e) {
+            console.log('Downloading CV...');
+            // Allow default download behavior
+            return true;
+          };
+        } else {
+          throw new Error('File not found');
+        }
+      } catch (error) {
+        console.log('❌ CV file not accessible:', error);
+        cvStatus.textContent = '❌ CV temporarily unavailable - Please contact via email';
+        cvStatus.className = 'status-error';
         cvLink.classList.add('btn-disabled');
+        
+        // Prevent download and show message
         cvLink.onclick = function(e) {
           e.preventDefault();
           alert('CV file is not available at the moment. Please contact me directly at mdabusayedislam2@gmail.com');
           return false;
         };
-        cvStatus.textContent = 'CV temporarily unavailable - Please contact via email';
-        cvStatus.style.color = '#FFB6C1';
-      }
 
-      function checkCVFile(url) {
-        return new Promise((resolve) => {
-          // Method 1: Fetch with HEAD
-          fetch(url, { method: 'HEAD', cache: 'no-cache' })
-            .then(response => {
-              resolve(response.ok);
-            })
-            .catch(() => {
-              // Method 2: Try with GET but only check status
-              fetch(url, { method: 'GET', cache: 'no-cache' })
-                .then(response => {
-                  resolve(response.ok);
-                })
-                .catch(() => {
-                  resolve(false);
-                });
-            });
-        });
+        // Try alternative paths
+        tryAlternativePaths();
       }
-    });
+    }
 
-    // Animate sections
-    const sections = document.querySelectorAll('section');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+    // Try different file paths
+    async function tryAlternativePaths() {
+      const alternatives = [
+        './assets/Md_Abu_Sayed_Islam.pdf',
+        'assets/Md_Abu_Sayed_Islam.pdf',
+        '/assets/Md_Abu_Sayed_Islam.pdf',
+        './Md_Abu_Sayed_Islam.pdf'
+      ];
+
+      for (let path of alternatives) {
+        try {
+          const response = await fetch(path, { method: 'HEAD' });
+          if (response.ok) {
+            console.log('✅ Found CV at alternative path:', path);
+            document.getElementById('cvDownload').href = path;
+            checkCVFile(); // Re-check with new path
+            return;
+          }
+        } catch (e) {
+          // Continue to next alternative
         }
-      });
-    }, { threshold: 0.2 });
-    sections.forEach(section => observer.observe(section));
+      }
+      console.log('❌ No alternative paths worked');
+    }
 
-    // Skill bar animation
-    const skillBars = document.querySelectorAll('.skill-bar span');
-    window.addEventListener('scroll', () => {
-      skillBars.forEach(bar => {
-        const rect = bar.getBoundingClientRect();
-        if(rect.top < window.innerHeight - 50) bar.style.width = bar.dataset.width;
-      });
+    // Initialize when page loads
+    window.addEventListener('load', function() {
+      console.log('🔄 Initializing portfolio...');
+      
+      // Check profile image
+      const profileImg = document.querySelector('header img');
+      const imgTest = new Image();
+      imgTest.onerror = () => handleImageError(profileImg);
+      imgTest.src = profileImg.src;
+
+      // Check CV file
+      checkCVFile();
+
+      // Animation and other functionality
+      initAnimations();
     });
 
-    // Back to top
-    const backToTop = document.getElementById('backToTop');
-    if (backToTop) {
+    function initAnimations() {
+      // Animate sections
+      const sections = document.querySelectorAll('section');
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if(entry.isIntersecting){
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.2 });
+      sections.forEach(section => observer.observe(section));
+
+      // Skill bar animation
+      const skillBars = document.querySelectorAll('.skill-bar span');
+      window.addEventListener('scroll', () => {
+        skillBars.forEach(bar => {
+          const rect = bar.getBoundingClientRect();
+          if(rect.top < window.innerHeight - 50) bar.style.width = bar.dataset.width;
+        });
+      });
+
+      // Back to top
+      const backToTop = document.getElementById('backToTop');
       window.addEventListener('scroll', () => {
         backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
       });
     }
   </script>
-
 </body>
 </html>
