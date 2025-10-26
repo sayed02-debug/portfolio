@@ -7,30 +7,138 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: 'Poppins', sans-serif; background: #f4f7f9; color: #333; line-height: 1.6; scroll-behavior: smooth;}
-    
-    header { background: #1a1a1a; color: #ffffff; text-align: center; padding: 60px 20px; }
-    header h1 { color: #00cfff; font-size: 2.5rem; margin-bottom: 10px; }
-    header h2 { color: #ffffff; font-weight: 400; font-size: 1.2rem; margin-bottom: 10px; }
-    header p { color: #c0c0c0; margin: 3px 0; }
-    header a { color: #00cfff; text-decoration: none; margin-right: 10px; }
-    header a:hover { text-decoration: underline; }
-    .btn { display: inline-block; padding: 8px 15px; margin-top: 10px; background: #00cfff; color: #1a1a1a; border-radius: 5px; text-decoration: none; transition: background 0.3s; }
-    .btn:hover { background: #00a3cc; }
+    body { font-family: 'Poppins', sans-serif; background: #f4f7fa; color: #333; scroll-behavior: smooth; }
 
-    section { padding: 40px 20px; max-width: 1000px; margin: auto; opacity: 0; transform: translateY(30px); transition: all 0.7s ease-in-out; }
-    section.visible { opacity: 1; transform: translateY(0); }
-    h2 { color: #007bff; border-bottom: 3px solid #007bff; display: inline-block; margin-bottom: 20px; font-size: 1.8rem; }
+    /* HEADER */
+    header {
+      background: linear-gradient(135deg, #001f3f, #004080);
+      color: white;
+      text-align: center;
+      padding: 70px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 5px;
+      background: #00cfff;
+    }
+    header img {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      border: 4px solid #00cfff;
+      margin-bottom: 20px;
+      object-fit: cover;
+      box-shadow: 0 0 20px rgba(0, 207, 255, 0.5);
+    }
+    header h1 {
+      font-size: 2.5rem;
+      color: #00cfff;
+      letter-spacing: 1px;
+    }
+    header h2 {
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-top: 8px;
+      color: #f0f0f0;
+    }
+    header p {
+      margin-top: 8px;
+      color: #d1d1d1;
+      font-size: 0.95rem;
+    }
+    header a {
+      color: #00cfff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    header a:hover {
+      text-decoration: underline;
+    }
+    .btn {
+      display: inline-block;
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #00cfff;
+      color: #001f3f;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
+      text-decoration: none;
+    }
+    .btn:hover {
+      background: #00a3cc;
+      transform: translateY(-2px);
+    }
 
-    .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); margin-bottom: 20px; transition: transform 0.3s, box-shadow 0.3s; }
-    .card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-    .card h3 { color: #007bff; margin-bottom: 10px; }
-    ul { margin-left: 20px; }
-    li { margin-bottom: 8px; }
+    /* SECTIONS */
+    section {
+      padding: 60px 20px;
+      max-width: 1000px;
+      margin: auto;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease-out;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      color: #004080;
+      font-size: 1.8rem;
+      border-left: 6px solid #00cfff;
+      padding-left: 10px;
+      margin-bottom: 25px;
+    }
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      margin-bottom: 25px;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+    }
+    .card h3 {
+      color: #007bff;
+      margin-bottom: 10px;
+    }
+    ul { margin-left: 20px; line-height: 1.7; }
 
-    .skill-bar { height: 8px; background: #e0e0e0; border-radius: 5px; overflow: hidden; margin-top: 8px; }
-    .skill-bar span { display: block; height: 100%; background: #007bff; width: 0; border-radius: 5px; transition: width 1s ease-in-out; }
+    /* SKILLS */
+    .skill {
+      margin-bottom: 15px;
+    }
+    .skill p {
+      margin-bottom: 5px;
+      font-weight: 600;
+      color: #333;
+    }
+    .skill-bar {
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    .skill-bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 5px;
+      background: linear-gradient(90deg, #007bff, #00cfff);
+      transition: width 1s ease-in-out;
+    }
 
+    /* BACK TO TOP */
     #backToTop {
       position: fixed;
       bottom: 30px;
@@ -39,148 +147,158 @@
       color: white;
       padding: 10px 15px;
       border-radius: 50%;
-      cursor: pointer;
       font-size: 18px;
+      cursor: pointer;
       display: none;
       z-index: 1000;
       transition: background 0.3s;
     }
     #backToTop:hover { background: #005bb5; }
 
-    footer { text-align: center; padding: 25px 20px; background: #1a1a1a; color: white; margin-top: 50px; font-size: 0.9rem; }
+    footer {
+      text-align: center;
+      padding: 25px 20px;
+      background: #001f3f;
+      color: white;
+      margin-top: 60px;
+      font-size: 0.9rem;
+    }
 
-    @media (max-width: 768px) { section { padding: 30px 15px; } }
+    @media (max-width: 768px) {
+      header h1 { font-size: 2rem; }
+      header h2 { font-size: 1rem; }
+      section { padding: 40px 15px; }
+    }
   </style>
 </head>
 <body>
 
-<header>
-  <h1>MD. ABU SAYED ISLAM</h1>
-  <h2>Software Engineer & AI Enthusiast</h2>
-  <p>📧 mdabusayedislam2@gmail.com | 📱 +880-1521-703362</p>
-  <p>
-    LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">sayed02</a> | 
-    GitHub: <a href="https://github.com/sayed02-debug" target="_blank">sayed02-debug</a>
-  </p>
-  <a class="btn" href="Md_Abu_Sayed_Islam.pdf" download>Download CV (PDF)</a>
-</header>
+  <header>
+    <img src="assets/profile.png" alt="MD. ABU SAYED ISLAM">
+    <h1>MD. ABU SAYED ISLAM</h1>
+    <h2>Software Engineer & AI Enthusiast</h2>
+    <p>📧 mdabusayedislam2@gmail.com | 📱 +880-1521-703362</p>
+    <p>
+      LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">sayed02</a> | 
+      GitHub: <a href="https://github.com/sayed02-debug" target="_blank">sayed02-debug</a>
+    </p>
+    <a class="btn" href="assets/Md_Abu_Sayed_Islam.pdf" download>📄 Download CV</a>
+  </header>
 
-<section class="about">
-  <h2>About Me</h2>
-  <p>
-    I am a motivated Software Engineer and AI Enthusiast with expertise in Flutter, Dart, Golang, and Python. 
-    B.Sc. in Computer Science & Engineering from Jagannath University. 
-    Skilled in building scalable mobile and backend applications with clean architecture. 
-    Passionate about creating meaningful user experiences and solving complex problems.
-  </p>
-</section>
+  <section class="about">
+    <h2>About Me</h2>
+    <p>
+      I’m a passionate Software Engineer and AI Enthusiast with hands-on experience in Flutter, Dart, Golang, and Python.  
+      Currently pursuing a B.Sc. in Computer Science & Engineering at Jagannath University.  
+      I specialize in building modern, scalable mobile and backend solutions with a focus on performance and design consistency.  
+      My goal is to merge creativity and logic to craft meaningful digital experiences.
+    </p>
+  </section>
 
-<section class="skills">
-  <h2>Skills</h2>
-  <div class="card">
-    <h3>Flutter & Dart</h3>
-    <div class="skill-bar"><span data-width="95%"></span></div>
-  </div>
-  <div class="card">
-    <h3>Golang & Python</h3>
-    <div class="skill-bar"><span data-width="85%"></span></div>
-  </div>
-  <div class="card">
-    <h3>Databases & Tools</h3>
-    <div class="skill-bar"><span data-width="90%"></span></div>
-  </div>
-  <div class="card">
-    <h3>Machine Learning & Data Analysis</h3>
-    <div class="skill-bar"><span data-width="80%"></span></div>
-  </div>
-</section>
+  <section class="skills">
+    <h2>Skills</h2>
+    <div class="card">
+      <div class="skill">
+        <p>Flutter & Dart</p>
+        <div class="skill-bar"><span data-width="95%"></span></div>
+      </div>
+      <div class="skill">
+        <p>Golang & Python</p>
+        <div class="skill-bar"><span data-width="90%"></span></div>
+      </div>
+      <div class="skill">
+        <p>Firebase, REST API, MySQL</p>
+        <div class="skill-bar"><span data-width="85%"></span></div>
+      </div>
+      <div class="skill">
+        <p>Machine Learning & Data Analysis</p>
+        <div class="skill-bar"><span data-width="80%"></span></div>
+      </div>
+    </div>
+  </section>
 
-<section class="experience">
-  <h2>Experience</h2>
-  <div class="card">
-    <h3>Flutter Developer | Freelance & Academic Projects</h3>
-    <ul>
-      <li>Smart Mess Management System app (GitHub Repo) – streamlining group expense tracking and meal planning for 100+ users.</li>
-      <li>IoT-based Child Safety & Health Monitoring Bracelet app, integrating real-time wearable data.</li>
-      <li>Custom Alarm app with personalized scheduling features.</li>
-    </ul>
-  </div>
-  <div class="card">
-    <h3>Web Developer | Freelance & Academic Projects</h3>
-    <ul>
-      <li>Voter API for HackTheAI hackathon (Flask & Docker)</li>
-      <li>Web applications using Python & Flask, improving client performance</li>
-      <li>Data analysis using Pandas & SQL for actionable insights</li>
-      <li>Clean, maintainable code following best practices</li>
-    </ul>
-  </div>
-</section>
+  <section class="experience">
+    <h2>Experience</h2>
+    <div class="card">
+      <h3>Flutter Developer | Freelance & Academic Projects</h3>
+      <ul>
+        <li>Developed a Smart Mess Management System app for meal and expense tracking (GitHub Repo).</li>
+        <li>Built an IoT-based Child Safety & Health Monitoring app with real-time wearable integration.</li>
+        <li>Created a Custom Alarm app with personalized scheduling features.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Web Developer | Freelance & Academic Projects</h3>
+      <ul>
+        <li>Developed a Voter API for HackTheAI Hackathon (Flask & Dockerized deployment).</li>
+        <li>Built Python Flask-based web apps integrating ML models and data visualization.</li>
+        <li>Performed data analysis using Pandas & SQL for business insights.</li>
+      </ul>
+    </div>
+  </section>
 
-<section class="education">
-  <h2>Education</h2>
-  <div class="card">
-    <h3>B.Sc. in Computer Science & Engineering</h3>
-    <p>Jagannath University</p>
-    <p>Thesis: Machine Learning for Predictive Analytics</p>
-  </div>
-  <div class="card">
-    <h3>H.S.C.</h3>
-    <p>Nilphamari Govt. College</p>
-    <p>GPA: 5.0/5.0</p>
-  </div>
-</section>
+  <section class="education">
+    <h2>Education</h2>
+    <div class="card">
+      <h3>B.Sc. in Computer Science & Engineering</h3>
+      <p>Jagannath University, Dhaka</p>
+      <p><strong>Thesis:</strong> Machine Learning for Predictive Analytics</p>
+    </div>
+    <div class="card">
+      <h3>H.S.C.</h3>
+      <p>Nilphamari Govt. College</p>
+      <p><strong>GPA:</strong> 5.0 / 5.0</p>
+    </div>
+  </section>
 
-<section class="projects">
-  <h2>Most Proud Of</h2>
-  <div class="card">
-    <h3>IoT Project Success</h3>
-    <p>Led a team to develop an IoT-based Child Safety & Health Monitoring Bracelet, integrating real-time health data.</p>
-    <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">View Project on GitHub</a>
-  </div>
-  <div class="card">
-    <h3>HackTheAI Hackathon</h3>
-    <p>Secured 73rd place among 250+ teams in HackTheAI 2025, demonstrating backend API expertise.</p>
-    <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">View Project on GitHub</a>
-  </div>
-</section>
+  <section class="projects">
+    <h2>Highlighted Projects</h2>
+    <div class="card">
+      <h3>IoT Child Safety & Health Monitoring Bracelet</h3>
+      <p>Led a team to develop an IoT-based wearable system integrating real-time data and alerting mechanism.</p>
+      <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">🔗 View Project</a>
+    </div>
+    <div class="card">
+      <h3>HackTheAI Hackathon</h3>
+      <p>Secured 73rd position among 250+ teams in HackTheAI 2025 — backend API and data pipeline design.</p>
+      <a class="btn" href="https://github.com/sayed02-debug/hackpreli" target="_blank">🔗 View Hackathon Repo</a>
+    </div>
+  </section>
 
-<div id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
+  <div id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</div>
 
-<footer>
-  <p>© 2025 MD. ABU SAYED ISLAM. All Rights Reserved.</p>
-</footer>
+  <footer>
+    <p>© 2025 MD. ABU SAYED ISLAM — All Rights Reserved.</p>
+  </footer>
 
-<script>
-  // Scroll animation
-  const sections = document.querySelectorAll('section');
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        observer.unobserve(entry.target);
-      }
+  <script>
+    // Intersection Animation
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.2 });
+    sections.forEach(section => observer.observe(section));
+
+    // Skill bar animation
+    const skillBars = document.querySelectorAll('.skill-bar span');
+    window.addEventListener('scroll', () => {
+      skillBars.forEach(bar => {
+        const rect = bar.getBoundingClientRect();
+        if(rect.top < window.innerHeight - 50) bar.style.width = bar.dataset.width;
+      });
     });
-  }, { threshold: 0.2 });
-  sections.forEach(section => observer.observe(section));
 
-  // Skill bars animation
-  const skillBars = document.querySelectorAll('.skill-bar span');
-  window.addEventListener('scroll', () => {
-    skillBars.forEach(bar => {
-      const rect = bar.getBoundingClientRect();
-      if(rect.top < window.innerHeight - 50) {
-        bar.style.width = bar.dataset.width;
-      }
+    // Back to Top button
+    const backToTop = document.getElementById('backToTop');
+    window.addEventListener('scroll', () => {
+      backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
     });
-  });
-
-  // Back to top button
-  const backToTop = document.getElementById('backToTop');
-  window.addEventListener('scroll', () => {
-    if(window.scrollY > 300){ backToTop.style.display = 'block'; }
-    else { backToTop.style.display = 'none'; }
-  });
-</script>
+  </script>
 
 </body>
 </html>
