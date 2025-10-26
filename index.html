@@ -34,6 +34,22 @@
       box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
     }
 
+    .profile-placeholder {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid #00d4ff;
+      background: #004d99;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+    }
+
     header h1 {
       font-size: 2.7rem;
       letter-spacing: 1px;
@@ -78,6 +94,12 @@
     .btn:hover {
       background: #00a3cc;
       transform: translateY(-3px);
+    }
+
+    .btn:disabled {
+      background: #cccccc;
+      cursor: not-allowed;
+      transform: none;
     }
 
     /* SECTIONS */
@@ -176,7 +198,15 @@
 <body>
 
   <header>
-    <img src="assets/profile.png" alt="MD. ABU SAYED ISLAM" onerror="this.src='https://via.placeholder.com/150/007bff/ffffff?text=SAYED'">
+    <!-- Profile Image with better error handling -->
+    <div id="profileImage">
+      <img src="assets/profile.png" alt="MD. ABU SAYED ISLAM" 
+           onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';">
+      <div class="profile-placeholder" id="placeholder" style="display:none;">
+        SAYED
+      </div>
+    </div>
+    
     <h1>MD. ABU SAYED ISLAM</h1>
     <h2>Software Engineer & AI Enthusiast</h2>
     <p>📧 mdabusayedislam2@gmail.com | 📱 +880-1521-703362</p>
@@ -184,7 +214,9 @@
       LinkedIn: <a href="https://linkedin.com/in/sayed02" target="_blank">sayed02</a> |
       GitHub: <a href="https://github.com/sayed02-debug" target="_blank">sayed02-debug</a>
     </p>
-    <a class="btn" href="assets/Md_Abu_Sayed_islam.pdf" download="Md_Abu_Sayed_Islam.pdf">📄 Download CV</a>
+    
+    <!-- CV Download with CORRECT filename -->
+    <a class="btn" href="assets/Md_Abu_Sayed_Islam.pdf" download="Md_Abu_Sayed_Islam_CV.pdf" id="cvDownload">📄 Download CV</a>
   </header>
 
   <section class="about">
@@ -250,6 +282,50 @@
   </footer>
 
   <script>
+    // Check if files exist on page load
+    window.addEventListener('load', function() {
+      // Check profile image
+      const profileImg = document.querySelector('header img');
+      if (profileImg) {
+        profileImg.onerror = function() {
+          this.style.display = 'none';
+          document.getElementById('placeholder').style.display = 'flex';
+        };
+        
+        // Trigger error check
+        setTimeout(() => {
+          if (profileImg.naturalWidth === 0) {
+            profileImg.onerror();
+          }
+        }, 1000);
+      }
+
+      // Check CV file
+      const cvLink = document.getElementById('cvDownload');
+      if (cvLink) {
+        fetch(cvLink.href, { method: 'HEAD' })
+          .then(response => {
+            if (!response.ok) {
+              showCVError();
+            }
+          })
+          .catch(error => {
+            showCVError();
+          });
+      }
+
+      function showCVError() {
+        cvLink.style.opacity = '0.6';
+        cvLink.style.cursor = 'not-allowed';
+        cvLink.title = 'CV file not found. Please contact me directly.';
+        cvLink.onclick = function(e) {
+          e.preventDefault();
+          alert('CV file is not available at the moment. Please contact me directly at mdabusayedislam2@gmail.com');
+          return false;
+        };
+      }
+    });
+
     // Animate sections
     const sections = document.querySelectorAll('section');
     const observer = new IntersectionObserver(entries => {
@@ -273,9 +349,11 @@
 
     // Back to top
     const backToTop = document.getElementById('backToTop');
-    window.addEventListener('scroll', () => {
-      backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
-    });
+    if (backToTop) {
+      window.addEventListener('scroll', () => {
+        backToTop.style.display = window.scrollY > 400 ? 'block' : 'none';
+      });
+    }
   </script>
 
 </body>
