@@ -96,10 +96,11 @@
       transform: translateY(-3px);
     }
 
-    .btn:disabled {
-      background: #cccccc;
-      cursor: not-allowed;
-      transform: none;
+    .btn-disabled {
+      background: #cccccc !important;
+      cursor: not-allowed !important;
+      transform: none !important;
+      opacity: 0.7;
     }
 
     /* SECTIONS */
@@ -198,9 +199,9 @@
 <body>
 
   <header>
-    <!-- Profile Image with better error handling -->
+    <!-- Profile Image -->
     <div id="profileImage">
-      <img src="assets/profile.png" alt="MD. ABU SAYED ISLAM" 
+      <img src="./assets/profile.png" alt="MD. ABU SAYED ISLAM" 
            onerror="this.style.display='none'; document.getElementById('placeholder').style.display='flex';">
       <div class="profile-placeholder" id="placeholder" style="display:none;">
         SAYED
@@ -215,8 +216,9 @@
       GitHub: <a href="https://github.com/sayed02-debug" target="_blank">sayed02-debug</a>
     </p>
     
-    <!-- CV Download with CORRECT filename -->
-    <a class="btn" href="assets/Md_Abu_Sayed_Islam.pdf" download="Md_Abu_Sayed_Islam_CV.pdf" id="cvDownload">📄 Download CV</a>
+    <!-- CV Download -->
+    <a class="btn" href="./assets/Md_Abu_Sayed_Islam.pdf" download="Md_Abu_Sayed_Islam_CV.pdf" id="cvDownload">📄 Download CV</a>
+    <p id="cvStatus" style="margin-top: 10px; font-size: 0.8rem; color: #ccc;"></p>
   </header>
 
   <section class="about">
@@ -284,45 +286,80 @@
   <script>
     // Check if files exist on page load
     window.addEventListener('load', function() {
+      console.log('Page loaded - checking files...');
+      
       // Check profile image
       const profileImg = document.querySelector('header img');
       if (profileImg) {
+        console.log('Checking profile image:', profileImg.src);
         profileImg.onerror = function() {
+          console.log('Profile image not found, showing placeholder');
           this.style.display = 'none';
           document.getElementById('placeholder').style.display = 'flex';
         };
         
-        // Trigger error check
-        setTimeout(() => {
-          if (profileImg.naturalWidth === 0) {
-            profileImg.onerror();
-          }
-        }, 1000);
+        // Force check image
+        const img = new Image();
+        img.onerror = function() {
+          profileImg.onerror();
+        };
+        img.src = profileImg.src;
       }
 
       // Check CV file
       const cvLink = document.getElementById('cvDownload');
+      const cvStatus = document.getElementById('cvStatus');
+      
       if (cvLink) {
-        fetch(cvLink.href, { method: 'HEAD' })
-          .then(response => {
-            if (!response.ok) {
+        console.log('Checking CV file:', cvLink.href);
+        
+        // Try multiple methods to check file existence
+        checkCVFile(cvLink.href)
+          .then(exists => {
+            if (exists) {
+              console.log('CV file found');
+              cvStatus.textContent = 'CV is available for download';
+              cvStatus.style.color = '#90EE90';
+            } else {
+              console.log('CV file not found');
               showCVError();
             }
           })
           .catch(error => {
+            console.log('Error checking CV file:', error);
             showCVError();
           });
       }
 
       function showCVError() {
-        cvLink.style.opacity = '0.6';
-        cvLink.style.cursor = 'not-allowed';
-        cvLink.title = 'CV file not found. Please contact me directly.';
+        cvLink.classList.add('btn-disabled');
         cvLink.onclick = function(e) {
           e.preventDefault();
           alert('CV file is not available at the moment. Please contact me directly at mdabusayedislam2@gmail.com');
           return false;
         };
+        cvStatus.textContent = 'CV temporarily unavailable - Please contact via email';
+        cvStatus.style.color = '#FFB6C1';
+      }
+
+      function checkCVFile(url) {
+        return new Promise((resolve) => {
+          // Method 1: Fetch with HEAD
+          fetch(url, { method: 'HEAD', cache: 'no-cache' })
+            .then(response => {
+              resolve(response.ok);
+            })
+            .catch(() => {
+              // Method 2: Try with GET but only check status
+              fetch(url, { method: 'GET', cache: 'no-cache' })
+                .then(response => {
+                  resolve(response.ok);
+                })
+                .catch(() => {
+                  resolve(false);
+                });
+            });
+        });
       }
     });
 
